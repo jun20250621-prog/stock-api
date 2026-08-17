@@ -13,9 +13,11 @@ const http = require('http');
 const https = require('https');
 const url = require('url');
 const fs = require('fs');
+const path = require('path');
 
 const PORT = 5007;
-const DATA_FILE = __dirname + '/stock-data.json';
+const DATA_FILE = __dirname + '/public/api/stock-data.json';
+const PUBLIC_DIR = __dirname + '/public';
 
 // ===== Yahoo Finance =====
 function fetchYahoo(symbol) {
@@ -112,6 +114,24 @@ const server = http.createServer(async (req, res) => {
     }
     
     const parsedUrl = url.parse(req.url, true);
+    
+    // 靜態檔案服務
+    let filePath = parsedUrl.pathname === '/' ? '/index.html' : parsedUrl.pathname;
+    filePath = path.join(PUBLIC_DIR, filePath);
+    if (fs.existsSync(filePath) && fs.statSync(filePath).isFile()) {
+        const ext = path.extname(filePath);
+        const contentTypes = {
+            '.html': 'text/html',
+            '.js': 'application/javascript',
+            '.css': 'text/css',
+            '.json': 'application/json',
+            '.png': 'image/png',
+            '.jpg': 'image/jpeg'
+        };
+        res.writeHead(200, { 'Content-Type': contentTypes[ext] || 'text/plain' });
+        fs.createReadStream(filePath).pipe(res);
+        return;
+    }
     
     // /health - 健康檢查
     if (parsedUrl.pathname === '/health') {
