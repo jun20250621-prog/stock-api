@@ -1,0 +1,13 @@
+{
+  "name": "stock-api",
+  "version": "1.0.0",
+  "description": "Stock Market API Proxy",
+  "main": "api-server.js",
+  "scripts": {
+    "start": "node api-server.js",
+    "dev": "node api-server.js"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

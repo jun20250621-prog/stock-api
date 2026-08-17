@@ -1,0 +1,13 @@
+{
+  "name": "stock-api",
+  "version": 1,
+  "build": {
+    "command": "npm install",
+    "outputDir": "."
+  },
+  "server": {
+    "port": 5007,
+    "run": "node api-server.js"
+  },
+  "env": {}
+}
