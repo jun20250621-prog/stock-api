@@ -3,7 +3,12 @@ const axios = require('axios');
 const cheerio = require('cheerio');
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = parseInt(process.env.PORT || '3000', 10);
+
+app.listen(PORT, '0.0.0.0', () => {
+  console.log(`Stock API running on port ${PORT}`);
+  console.log(`Environment: ${process.env.NODE_ENV || 'development'}`);
+});
 
 // Cache to reduce API calls
 let cache = {};
@@ -184,6 +189,6 @@ app.get('/api/all', async (req, res) => {
   }
 });
 
-app.listen(PORT, () => {
+app.listen(PORT, '0.0.0.0', () => {
   console.log(`Stock API running on port ${PORT}`);
 });

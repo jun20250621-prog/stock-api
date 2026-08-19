@@ -1,0 +1,14 @@
+{
+  "version": "3",
+  "name": "stock-api",
+  "builder": "zeabur/node:18",
+  "run": "node index.js",
+  "env": {
+    "PORT": {
+      "value": "3000"
+    },
+    "NODE_ENV": {
+      "value": "production"
+    }
+  }
+}
