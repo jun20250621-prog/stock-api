@@ -5,11 +5,6 @@ const cheerio = require('cheerio');
 const app = express();
 const PORT = parseInt(process.env.PORT || '3000', 10);
 
-app.listen(PORT, '0.0.0.0', () => {
-  console.log(`Stock API running on port ${PORT}`);
-  console.log(`Environment: ${process.env.NODE_ENV || 'development'}`);
-});
-
 // Cache to reduce API calls
 let cache = {};
 const CACHE_TTL = 60000; // 1 minute
@@ -189,6 +184,6 @@ app.get('/api/all', async (req, res) => {
   }
 });
 
-app.listen(PORT, '0.0.0.0', () => {
+app.listen(PORT, '127.0.0.1', () => {
   console.log(`Stock API running on port ${PORT}`);
 });
