@@ -3,7 +3,12 @@ const axios = require('axios');
 const cheerio = require('cheerio');
 
 const app = express();
-const PORT = parseInt(process.env.PORT || '3000', 10);
+// Zeabur provides PORT via environment variable
+const PORT = parseInt(process.env.PORT || process.env.ZEABUR_PORT || '3000', 10);
+
+console.log('Starting Stock API...');
+console.log('PORT:', PORT);
+console.log('NODE_ENV:', process.env.NODE_ENV);
 
 // Cache to reduce API calls
 let cache = {};
