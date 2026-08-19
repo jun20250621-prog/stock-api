@@ -4,7 +4,7 @@ const cheerio = require('cheerio');
 
 const app = express();
 // Zeabur provides PORT via environment variable
-const PORT = parseInt(process.env.PORT || process.env.ZEABUR_PORT || '3000', 10);
+const PORT = parseInt(process.env.PORT || process.env.ZEABUR_PORT || '5000', 10);
 
 console.log('Starting Stock API...');
 console.log('PORT:', PORT);
