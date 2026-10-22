@@ -189,6 +189,8 @@ app.get('/api/all', async (req, res) => {
   }
 });
 
-app.listen(PORT, '127.0.0.1', () => {
-  console.log(`Stock API running on port ${PORT}`);
+// Zeabur 容器外部的 gateway 需要連進來，必須綁 0.0.0.0，
+// 綁 127.0.0.1 只會讓 loopback 內部可連，gateway 連不到 -> 502
+app.listen(PORT, '0.0.0.0', () => {
+  console.log(`Stock API running on port ${PORT} (bound 0.0.0.0)`);
 });
